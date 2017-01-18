@@ -1,0 +1,39 @@
+
+{% extends "::base.html.twig" %}
+
+{% block title %}Lavori in attesa{% endblock %}
+
+{% block corpo %}
+
+<section class="top"> </section>
+
+    <section class="ric">
+    	<div>
+    		<h4>Ricerca</h4>
+    		<input class="search" name="" placeholder="nome cliente, numero ordine..."><a class="btn-flat primary" href="">  Ricerca </a>
+		</div>
+
+    </section>
+        <section class="t1" >
+            <table class="table table-hover">
+			      <caption> <h4>Lavori - <span>in attesa</span></h4></caption>
+				    <thead> 
+				    	<tr><th class="span3">Descrizione</th><th class="span4">Codice lavorazione</th><th class="span4">data</th><th class="span4"> </th></tr>
+			    	</thead>
+			    <tbody>
+			    		{%for item in  attesa%}
+			    	<tr class="first">
+				        <td>{{item.descrizione}}</td>
+				        <td>{{item.codicelavorazione}}</td>
+				        <td><time datetime="2016-07-20">{{item.data}}</time></td>
+				        <td>	       
+						<a class="btn-flat primary" style="border-radius:2px; cursor:pointer; margin-right:18px; padding: 3px 5px 3px 3px;" href="lavoro.html"><i class="icon-zoom-in"></i> Analizza</a>
+						</td>
+				    </tr>
+				    	{%endfor%}
+				    
+			   			<div><input class="search" name="" placeholder="nome cliente, numero ordine..."><a class="btn-flat primary" href="">  Ricerca </a></div>
+				</tbody>    
+			</table>
+		</section>
+{% endblock %}

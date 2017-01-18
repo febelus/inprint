@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Prinkino{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{ asset('prinkino/style/monitor.css') }}" rel="stylesheet" />
+        {% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+            <script src="{{ asset('js/base.js') }}"></script>
+        {% endblock %}
+        
+    </head>
+    <body>
+        {% block body %}
+            <header>
+                {% block header %}
+                    <img src="{{ asset('prinkino/src/prink.png')}}" id="logo">
+                    <nav class="menu">
+                        <ul>
+                            {%if app.session.get('ordine') is null %}
+                                <li><a href="{{ path('home') }}">Home</a></li>
+                                <li><a href="{{ path('nuovocliente') }}">Nuovo Cliente</a></li>
+                                <li><a href="{{ path('nuovoordine') }}">Nuovo Ordine</a></li>
+                                <li><a href="{{ path('ordini') }}">Gestione ordine</a></li>
+                            {%else%}
+                                 <li><a href=" {{ path('annulla')}}" >Annulla</a></li>
+                                <li><a href="{{ path('sospendi')}}">Sospendi</a></li>
+                                <li><a href="{{ path('visualizza')}}">Visualizza</a></li>
+                                <li><a href="{{ path('nuovoordine')}}">Continua</a></li>
+                            {%endif%}
+                        </ul>
+                    </nav>
+                {% endblock %}
+            </header>
+            <div class="conteiner">
+                <div class="aside">  
+	            {% block aside %}    
+                        <nav class="menu" id="laterale">
+                                <ul>
+                                    <li><a href="{{ path('home') }}"><img class="icon" src="{{ asset('prinkino/src/home.ico')}}">Home</a></li>
+                                    <li><a href="{{ path('catalogo') }}"><img class="icon" src="{{ asset('prinkino/src/catalogo.ico')}}">Catalogo</a></li>
+                                    <li><a href="{{ path('clienti') }}"><img class="icon" src="{{ asset('prinkino/src/clienti.ico')}}">Clienti</a></li>
+                                    <li><a href="{{ path('ordini') }}"><img class="icon" src="{{ asset('prinkino/src/ordini.ico')}}">Ordini</a></li>
+                                </ul> 
+                        </nav>
+                    {% endblock %}
+	        </div>
+                <div id="corpo">
+                    {%if not(app.session.get('ordine') is null) %}
+                        {%set k=app.session.get('ordine')|length%}
+                        <form id="msform"> 
+                            <ul id="progressbar">
+                                {% for i in 1..6 %}
+                                    {%if i<=k%}
+                                        <li class="active"> fase {{ i }}</li>
+                                        {% else %}
+                                        <li> fase {{ i }} </li>
+                                    {%endif%}
+                                {% endfor %}
+                              </ul>    			                   
+                          </form>
+                    {%endif%}                   
+                    {% block corpo %}
+                   {% endblock %}
+                </div>
+                <footer>
+           		<p> inprint s.r.l.</p>
+	    	</footer>
+            </div>
+            {% endblock %}
+    </body>
+</html>
+
+

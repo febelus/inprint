@@ -1,0 +1,30 @@
+
+{% extends "::base.html.twig" %}
+
+{% block title %}{{dettaglio}}{% endblock %}
+
+{% block corpo %}
+
+<section class="top">
+   <h4>Nuovo ordine</h4>
+</section>
+<section class="form">
+    <form method="post" action={{path('nuovoordine')}}>
+          <table>
+             <tbody>
+                <tr valign="form">
+                    <td height="254" width="254">
+                        <div class="field-box">
+                            <label>{{dettaglio}}:</label>							
+                            <td height="300" width="300">
+                                <input name={{dettaglio}} id="extra" placeholder="Inserisci {{dettaglio}}..." class="span8" rows="8" style="margin: 0px 0px 10px; height: 110px; width: 250px; position:static; resize:none;"></textarea>
+                            </td>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="submit" class="btn-flat primary" >  
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Dettagli Ordine{% endblock %}
+
+{% block corpo %}
+
+    <div class="container-fluid" style=""><script>var premiumAccess = 2;</script><script>var type=0; var csid=1750327;</script>
+        <div style="margin-top:20px;" align="center">
+            <h4 style="font-weight: 300;">Dettagli ordine</h4>
+             {%for item in ordine%}
+            <h3 style="font-weight: 300; margin-top:10px;">{{item.codiceordine}}- {{item.nome}} {{item.cognome}}</h3>
+        </div>
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th class="span2">Data ordine</th>
+                    <th class="span2">Grafica</th>
+                    <th class="span2"><span class="line"></span>Stato</th>
+                    <th class="span4"><span class="line"></span>Articolo</th>
+                    <th class="span1"><span class="line"></span>quantita'</th>
+                    <th class="span3"><span class="line"></span>Studio Graficp</th>
+                    <th class="span3"><span class="line"></span>Sito di produzione</th>
+                    <th class="span1"><span class="line"></span>Importo totale</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+                <tr class="first" style="font-size:14px; cursor:pointer; ">
+                    <td>{{item.data|date('d-m-Y')}}</td>
+                    <td><a class="btn-flat primary" style="border-radius:2px; cursor:pointer; margin-right:18px; padding: 3px 5px 3px 3px;" href={{ path('immagine', {'idgrafica': item.idgrafica, 'idcliente': item.idcliente} )}}>{{item.idgrafica}}</a></td>
+                    <td>{{item.stato}}</td>
+                    <td><a class="btn-flat primary" style="border-radius:2px; cursor:pointer; margin-right:18px; padding: 3px 5px 3px 3px;" href={{ path('articolo2', {'idarticolo': item.articolo, 'idcliente': item.idcliente} )}}>{{item.articolo}}</a></td>
+                    <td>{{item.quantita}}</td>
+                    <td> {{item.studiografico}}</td>
+                    <td><span >{{item.sitoproduzione}}</span></td>
+                    <td> {% set prezzot=item.quantita*item.prezzo-item.sconto%} {{ prezzot }}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+        <div style="margin-top:15px;" align="right">
+            <a class="btn-flat success" href="" style="border-radius:2px; cursor:pointer;"><i class="icon-mail-forward"></i> Ripeti ordine</a>
+            <a class="btn-flat success" href="" style="border-radius:2px; cursor:pointer;"><i class="icon-mail-forward"></i> Modifica ordine</a>
+        </div>
+        <table>
+            <tbody>
+                <tr valign="top">
+                    <td style="width: 1400px;" width="100%"><div class="row-fluid" id="boxTable" style="margin-top:30px;">
+                        <table class="table table-hover">
+                            <caption><h4>Eventi dell'ordine<h4></caption>
+                            <thead>
+                                <tr>
+                                    <th class="span2">Data</th>
+                                    <th class="span2"><span class="line"></span>Ora</th>
+                                    <th class="span4"><span class="line"></span>tipo</th>
+                                    <th class="span4"><span class="line"></span>Descrizione</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {%for item in eventi %} 
+                                <tr style="font-size:14px; cursor:pointer; ">
+                                    <td>{{item.data|date('d-m-Y')}}</td>
+                                    <td>{{item.data|date('H:i:s')}}</td>
+                                    <td>{{item.nome}}</td>
+                                    <td>{{item.Descrizione}} </td>
+                                </tr>	
+                            {%endfor%}						        		
+                            </tbody>
+                        </table>
+                    </td> 
+                </tr>
+            </tbody> 
+        </table>
+    </div>	
+  {% endblock %}

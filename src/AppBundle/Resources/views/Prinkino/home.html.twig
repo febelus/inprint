@@ -1,0 +1,52 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Benvenuto Prinkino{% endblock %}
+
+{% block corpo %}
+
+  <section class="top">
+      <h4>Benvenuto Prinkino</h4>
+  </section>
+  <section class="t1" >
+ <table class="table table-hover">
+    <caption> <h4>Ordini - <span>in arrivo</span></h4></caption>
+    <thead> 
+    <tr><th class="span3">Cliente</th><th class="span4">Numero</th><th class="span4">trackNumber</th><th class="span4"> Data Arrivo</th></tr>
+    </head>
+    <tbody>
+        {%for item in arrivo%}  
+            <tr class="first">
+                <td>{{item.cliente}} <a href="javascript: dettagli({{ loop.index }},1);"><img {{ asset('prinkino/src/down.png')}} class="freccia" id="img1{{ loop.index }}"></a></td>
+                <td>{{item.numero}}</td>
+                <td>{{item.tracknumber}}</td>
+                <td><time datetime="2016-07-20">{{item.data|date('d-m-Y')}}</time></td>
+            </tr>
+            <tr class="dettagli" id="dettagli1{{ loop.index }}"> <td colspan="4"> il presente div contiene i dettagli dell'elemento {{ loop.index }}</td></tr>
+        {%endfor%}
+        </tbody>
+</table>
+ </section>
+ <section class="t2" >
+    <table class="table table-hover"> 
+       <caption><h4>Ordini - <span>sospesi</span></h4></caption>
+	     <thead><tr>
+                 <th>Cliente</th>
+	         <th>Stato</th>
+	         </tr></thead>
+       <tbody>
+        <tr class="first">
+            {%for item in sospeso%}  
+                <td><a href="{{ path('visualizza', {'idsospeso': item.id}) }}">{{item.cliente}}</a></td>
+                <td><progress id="mioLoader" max="5" value="{{ item.stato }}"><span>{{ item.stato }}</span>%</progress></td>
+            
+	</tr>
+	<tr class="dettagli" id="dettagli2{{ loop.index }}"><td> il presente div contiene i dettagli dell'elemento {{ loop.index }} </td></tr>
+	{%endfor%}
+	 </tbody>
+   </table>
+</section>
+    <section class="ric">
+	 <h4>Ricerca</h4>
+	 <div><input class="search" name="" placeholder="nome cliente, numero ordine..."><a class="btn-flat primary" href="">  Ricerca </a></div>
+    </section>
+{% endblock %}

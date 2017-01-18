@@ -1,0 +1,55 @@
+{% extends "AppBundle:ResponsabileProduzione:SPbase.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block corpo %}
+
+<section class="top">
+    <h4>Benvenuto Responsabile produzione</h4>
+</section>
+    <section class="ric">
+        <div>
+            <h4>Ricerca</h4>
+            <input class="search" name="" placeholder="nome cliente, numero ordine..."><a class="btn-flat primary" href="">  Ricerca </a>
+        </div>
+    </section>
+    <section class="t1" >
+        <table class="table table-hover">
+            <caption> <h4>Lavori - <span>da eseguire </span></h4></caption>
+            <thead> 
+                <tr><th class="span3">Descrizione</th><th class="span4">Codice lavorazione</th><th class="span4">data</th><th class="span4">STATO</th><th class="span4"> </th></tr>
+            </thead>
+            <tbody>
+            {%for item in eseguire%}
+                <tr class="first">
+                    <td> {{item.descrizione}}  </td>
+                    <td>{{item.codiceordine}}</td>
+                    <td><time datetime="{{item.data}}">{{item.data}} </time></td>
+                    <td>{{item.stato}}</td>
+                    <td><a class="btn-flat primary" style="border-radius:2px; cursor:pointer; margin-right:18px; padding: 3px 5px 3px 3px;" href="ordine.html"><i class="icon-zoom-in"></i> Analizza</a></td>
+                </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+    </section>
+    <section class="t1" >
+        <table class="table table-hover">
+            <caption> <h4>Lavori - <span>in produzione </span></h4></caption>
+            <thead> 
+                <tr><th class="span3">Descrizione</th><th class="span4">Codice lavorazione</th><th class="span4">data</th><th class="span4">STATO</th><th class="span4"></th></tr>
+            </thead>
+            <tbody>
+            {%for item in produzione%}
+                <tr class="first">
+                    <td> {{item.descrizione}}  </td>
+                    <td>{{item.codiceordine}}</td>
+                    <td><time datetime="{{item.data}}">{{item.data}} </time></td>
+                    <td>{{item.stato}}</td>
+                    <td><a class="btn-flat primary" style="border-radius:2px; cursor:pointer; margin-right:18px; padding: 3px 5px 3px 3px;" href="ordine.html"><i class="icon-zoom-in"></i> Analizza</a></td>
+                </tr>
+            {%endfor%}
+                <tr class="dettagli" id="dettagli11"> <td colspan="4"> il presente div contiene i dettagli dell'elemento 1 </td></tr>
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

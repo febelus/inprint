@@ -1,0 +1,81 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Analisi Cliente{% endblock %}
+
+{% block corpo %}
+
+    <div class="container-fluid" style=""><script>var premiumAccess = 2;</script><script>var type=0; var csid=1750327;</script>
+        <div style="margin-top:20px;" align="center">
+            <h4 style="font-weight: 300;">Analisi cliente</h4>
+            {%for cliente in clienti%}
+            <h3 style="font-weight: 300; margin-top:10px;">{{cliente.nome}} {{cliente.cognome}}</h3>
+        </div>
+        <table class="table ">
+            <caption><h4>Dati del cliente<h4></caption>
+            <thead>
+                <tr>
+                    <th class="span2">Data Nascita</th>
+                    <th class="span2"><span class="line"></span>Codice cliente </th>
+                    <th class="span2"><span class="line"></span>Codice Fiscale</th>
+                    <th class="span4"><span class="line"></span>Indirizzo</th>
+                    <th class="span2"><span class="line"></span>Citta'</th>
+                    <th class="span3"><span class="line"></span>telefono</th>
+                    <th class="span3"><span class="line"></span>Mail</th>
+                    <th class="span3"><span class="line"></span>fax</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="first" style="font-size:14px; cursor:pointer; ">
+                    <td>{{cliente.dataNascita|date('d-m-Y')}}</td>
+                    <td>{{cliente.codicecliente}}</td> 
+                    <td>{{cliente.codiceFiscale}}</td>
+                    <td>{{cliente.via}}, {{cliente.numeroCivico}}</td>
+                    <td>{{cliente.citta}}</td>
+                    <td>{{cliente.telefono}}</td>
+                    <td>{{cliente.mail}}</td>
+                    <td>{{cliente.fax}}</td>
+                </tr>
+            </tbody>
+            {%endfor%}
+        </table>
+        <div style="margin-top:15px;" align="right">
+            <a class="btn-flat success" href={{path('nuovoordine',{'idcliente':idcliente})}} style="border-radius:2px; cursor:pointer;"><i class="icon-mail-forward"></i> Aggiungi ordine</a>
+            <a class="btn-flat success" href="" style="border-radius:2px; cursor:pointer;"><i class="icon-mail-forward"></i> Modifica dati</a>
+        </div>
+        <table>
+            <tbody>
+                <tr valign="top">
+                    <td style="width: 1400px;" width="100%"><div class="row-fluid" id="boxTable" style="margin-top:30px;">
+                        <table class="table table-hover">
+                            <caption><h4>Ordini effettuati<h4></caption>
+                            <thead>
+                                <tr>
+                                    <th class="span2">Data ordine</th>
+                                    <th class="span2"><span class="line"></span>Grafica</th>
+                                    <th class="span2"><span class="line"></span>Stato</th>
+                                    <th class="span4"><span class="line"></span>Codice Articolo</th>
+                                    <th class="span1"><span class="line"></span>Codice Ordine</th>
+                                    <th class="span3"><span class="line"></span>Studio Grafico</th>
+                                    <th class="span3"><span class="line"></span>Sito di produzione</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {%for item in ordini %} 
+                                <tr class="first" style="font-size:14px; cursor:pointer; ">
+                                    <td>{{item.data|date('d-m-Y')}}</td>
+                                    <td><a class="btn-flat primary" style="border-radius:2px; cursor:pointer; margin-right:18px; padding: 3px 5px 3px 3px;" href={{ path('immagine', {'idgrafica': item.idgrafica, 'idcliente': idcliente} )}}>{{item.idgrafica}}</a></td>
+                                    <td>{{item.stato}}</td>
+                                    <td><a class="btn-flat primary" style="border-radius:2px; cursor:pointer; margin-right:18px; padding: 3px 5px 3px 3px;" href={{ path('articolo2', {'idarticolo': item.articolo, 'idcliente': idcliente} )}}>{{item.articolo}}</a></td>
+                                    <td><a class="btn-flat primary" style="border-radius:2px; cursor:pointer; margin-right:18px; padding: 3px 5px 3px 3px;" href={{path('ordine',{'idordine':item.codiceordine})}}>{{item.codiceordine}}</a></td>
+                                    <td> {{item.studiografico}}</td>
+                                    <td><span > {{item.sitoproduzione}}</span></td>
+                                </tr>	
+                            {%endfor%}						    			
+                            </tbody>
+                        </table>
+                    </td> 
+                </tr>
+            </tbody> 
+        </table>
+    </div>
+{% endblock %}

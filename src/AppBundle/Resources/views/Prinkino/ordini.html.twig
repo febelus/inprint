@@ -1,0 +1,56 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Storico Ordini{% endblock %}
+
+{% block corpo %}
+
+    <div class="table-wrapper orders-table section">
+        <div class="row-fluid head">
+            <div class="span12">
+    	       <h4>Storico Ordini</h4>
+            </div>
+        </div>
+        <div align="center">
+            <table>
+                <tbody>
+                    <tr>
+                        <td align="right">
+                            <form method="post" action="ordini">
+                                <input name="criterio" autocomplete="off" id="searchField" class="search order-search" placeholder="Filtra per nome del cliente" style="width:210px; height:26px; margin-right:8px;" value="" type="text">
+                                <input type="submit" class="btn-flat success" onclick="location.href='importer-clients';" style="border-radius:2px; cursor:pointer; margin-right:8px;">
+                            </form>
+                            <a href="nuovoordine" id="modal_addclient" class="btn-flat primary" role="button" style="border-radius:2px;">+ Ordine</a>
+		       </td>
+                    </tr>
+                    <tr valign="top">
+    			<td style="width:50%;">
+                            <div class="row-fluid" id="boxTable">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="span3">Cliente</th>
+                                            <th class="span2"><span class="line"></span>Numero</th>
+                                            <th class="span2"><span class="line"></span>Stato</th>
+                                            <th class="span2"><span class="line"></span>Analizza</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {%for item in ordini%}
+                                            <tr class="first">
+            					<td style="cursor:pointer;" >{{item.nome}} {{item.cognome}}</td>
+                                                <td style="cursor:pointer;">{{item.codice}}</td>
+                                                <td style="cursor:pointer;">{{item.stato}}</td>
+                                                <td style="cursor:pointer;">
+                                                    <a class="btn-flat primary" style="border-radius:2px; cursor:pointer; margin-right:18px; padding: 3px 5px 3px 3px;" href={{ path('ordine', {'idordine': item.codice})}}><i class="icon-zoom-in"></i> Analizza</a>
+                                                </td>
+                                            </tr>
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+    </div>
+{% endblock %}

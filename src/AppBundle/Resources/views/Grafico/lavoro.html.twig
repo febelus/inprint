@@ -1,0 +1,75 @@
+
+{% extends "::base.html.twig" %}
+
+{% block title %}lavoro{% endblock %}
+
+{% block corpo %}
+
+<div class="container-fluid" style=""><script>var premiumAccess = 2;</script><script>var type=0; var csid=1750327;</script>
+	<div style="margin-top:20px;" align="center">
+		<h4 style="font-weight: 300;">Dettagli ordine</h4>
+		<h3 style="font-weight: 300; margin-top:10px;">{{item.id}} - {{item.nome}} {{item.cognome}}</h3>
+    </div>
+		<table class="table ">
+			<caption><h4><h4></caption>
+    			<thead>
+	        			<tr>
+	        				<th class="span2">Data ordine</th>
+	        				<th class="span2"><span class="line"></span>Codice Cliente</th>
+	        				<th class="span2"><span class="line"></span>Stato</th>
+	            			<th class="span4"><span class="line"></span>Descrizione</th>
+	            		</tr>
+				</thead>
+	    			<tbody>
+	    					{%for item in ordine %}
+	    				<tr class="first" style="font-size:14px; cursor:pointer; ">
+							<td>{{item.dataordine}}<span class="label label-rossa">Urgente</span></td>
+							<td>{{item.codicecliente}}</td>
+							<td>{{item.stato}}</td>
+		        			<td>{{item.descrizione}}</td>
+		        		</tr>
+		        			{%endfor%}
+	    		   </tbody>
+		</table>
+
+		<div style="margin-top:15px;" align="right">
+			<a class="btn-flat success" href="" style="border-radius:2px; cursor:pointer;">Bozza Grafica</a>
+			<a class="btn-flat success" href="" style="border-radius:2px; cursor:pointer;">Commento</a>
+			<a class="btn-flat success" href="" style="border-radius:2px; cursor:pointer;background-color:#B9B9B9; border-color:#FFFFFF;"">Carica Grafica</a>
+			<a class="btn-flat success" href="" style="border-radius:2px; cursor:pointer; background-color:#B9B9B9; border-color:#FFFFFF;" >Fissa Appuntamento</a>
+		</div>
+
+		<table>
+			<tbody>
+				<tr valign="top">
+					<td style="width: 1400px;" width="100%"><div class="row-fluid" id="boxTable" style="margin-top:30px;">
+						<table class="table table-hover">
+			    			<caption><h4>Eventi Grafici<h4></caption>
+			    			<thead>
+			        			<tr>
+			        				<th class="span2">Data</th>
+			        				<th class="span2"><span class="line"></span>Ora</th>
+			        				<th class="span4"><span class="line"></span>tipo</th>
+			            			<th class="span4"><span class="line"></span>Descrizione</th>
+								</tr>
+			    			</thead>
+			    				<tbody>
+					    					{%for item in eventi grafici%}
+					    				<tr style="font-size:14px; cursor:pointer; ">
+											<td>{{item.data}}<a href="javascript: dettaglio(1);"><img src="../src/down.png" class="freccia" id="img1"></a></td>
+											<td>{{item.ora}}</td>
+											<td>{{item.tipo}}</td>
+						        			<td>{{item.descrizione}}</td>
+						        		</tr>
+						        		<tr class="dettagli" id="d1">
+						        			<td colspan="4">{{item.dettaglievento}}</td>
+						        		</tr>
+					        			{%endfor%}
+			    				</tbody>
+						</table>
+					</td> 
+				</tr>
+			</tbody> 
+		</table>
+	</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+
+{% extends "::base.html.twig" %}
+
+{% block title %}Prodotto'{% endblock %}
+{% block stylesheets %}
+     {{ parent() }}
+     <link href="{{ asset('prinkino/style/prodotto.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block corpo %}
+
+<div class="row loading_element" style="visibility: visible;">
+    <div class="col-xs-12 top-10">
+        <div id="features">
+            <div class="panel panel-default feature feature-select" id="ui-10612">
+                <div class="panel-heading">
+                    <h4>{{ attributo.producibile}}:</h4>                                
+                </div>
+            </div>
+            <div class="panel panel-default feature feature-gallery" id="ui-11360">
+                <div class="panel-heading">
+                    <form action={{ path('articolo', {'idproducibile':idproducibile, 'precedente':precedente})}}>
+                        <div class="row">
+                            <h4>{{attributo.Nome}}</h4>
+                            <div class="col-xs-12">
+                                <div class="feature-slick slick slick-initialized slick-slider" id="11360">
+                                    <div aria-live="polite" class="slick-list draggable">
+                                        <div class="slick-track" style="opacity: 1; width: 236px; left: 0px;" role="listbox">
+                                            <div class="item col-xs-6 col-sm-3 col-md-1-5th  slick-slide slick-current slick-active" id="11362" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide10" style="width: 118px;">
+                                                <div class="field-box" align="left">                                    
+                                                    <div style="width: 254px" id="s2id_selectCountry1470146739" class="select2-container select2"> 
+                                                        <select name="pval" style="width: 254px;" class="select2" id="selectCountry1470146739">
+                                                        {%for item in valori%}
+                                                            <option value={{item.idvalore}}>{{item.valore}}</option>
+                                                        {%endfor%}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default feature feature-select" id="ui-9853">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <input type="submit" style="color: rgb(70, 70, 70); font-weight: bold; " href="NewOrdineCatalogo/clienti.html" class="add_carrello btn btn-lg col-xs-10 col-sm-12 col-xs-offset-1 col-sm-offset-0 top-20 bottom-5 btn-cart-custom" data-invalid="vai avanti" data-valid="Vai avanti" data-position="right-btn">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>	        
+    </div>
+{% endblock %}                        

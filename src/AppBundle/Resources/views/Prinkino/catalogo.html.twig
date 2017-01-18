@@ -1,0 +1,36 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+     {{ parent() }}
+      <link href="{{ asset('prinkino/style/catalogo.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block title %}Catalogo Prodotti{% endblock %}
+
+{% block corpo %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel b-a">
+                <div class="panel-heading b-b">
+                    <span class="font-bold">Catalogo prodotti</span>
+                </div>
+                {%for item in catalogo%}
+                <div class="row m-n">
+                    <div class="col-md-3 b-b b-r" onmouseover="$(this).find('#hover-rotate').addClass('hovered');" onmouseout="$(this).find('#hover-rotate').removeClass('hovered');">
+                        <a href={{ path('catalogo', {'idCategoria': item.id})}} class="block padder-v hover">
+                            <span class="i-s i-s-2x pull-left m-r-sm">
+                                <img src="{{ asset(item.immagine)}}" class="i hover-rotate" id="hover-rotate">
+                            </span>
+                            <span class="clear">
+                                <span class="h3 block m-t-xs texta-primary block-title">{{item.descrizione}}</span>
+                                <span class="h3 block m-t-xs texta-primary">{{item.nome}}</span>
+                                <small class="text-muted text-u-c"> codice categoria {{item.id}}</small>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+{% endblock %}

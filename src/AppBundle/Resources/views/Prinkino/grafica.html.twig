@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}lavoro{% endblock %}
+
+{% block corpo %}
+
+    <div style="margin-top:20px;" align="center">
+        <h4 style="font-weight: 300;">Grafica-{{id}}</h4>
+    </div>  
+    <section class="form2">
+        <img src="{{ asset(file)}}">
+    </section>
+    <section class="form">
+        <a class="btn-flat primary" href={{ path('cliente', {'idcliente': idcliente})}}>  Indietro </a>
+    </section>
+    </div>
+{% endblock %}

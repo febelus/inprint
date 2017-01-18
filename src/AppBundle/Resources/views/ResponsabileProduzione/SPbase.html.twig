@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Responsabile produzione</title>
+       {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('SitoProduzione/style/monitor.css') }}" media="screen">
+       {%endblock%}
+        <!-- Javascript -->
+        {% block js %}
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+             <script src="{{ asset('js/base.js') }}"></script>
+        {%endblock%}
+    </head>
+    <body>
+        <header>
+        	<img src="{{ asset('SitoProduzione/src/prink.png')}}" id="logo">
+        	<nav class="menu">
+              <ul>
+                  <li><a href="{{ path('SPhome')}}">Home</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="conteiner">
+	        <div class="aside">  
+	                <nav class="menu" id="laterale">    
+	                    <ul>
+	                        <li><a href="{{ path('SPhome')}}"><img class="icon" src="{{ asset('SitoProduzione/src/home.ico')}}">Home</a></li>
+	                        <li><a href="{{ path("SPdaeseguire")}}"><img class="icon" src="{{ asset('SitoProduzione/src/catalogo.ico')}}">Lavori da eseguire</a></li>
+	                        <li><a href="{{ path("SPinproduzione")}}"><img class="icon" src="{{ asset('SitoProduzione/src/clienti.ico')}}">Lavori in produzione</a></li>
+	                        <li><a href="{{ path("SPconclusi")}}"><img class="icon" src="{{ asset('SitoProduzione/src/ordini.ico')}}">Lavori conclusi</a></li>	                        
+	                        <li><a href="{{ path("SPoperatori")}}"><img class="icon" src="{{ asset('SitoProduzione/src/ordini.ico')}}">Operatori</a></li>
+	                    </ul> 
+	            	</nav>
+	        </div>
+                <div id="corpo">
+                    {%block corpo%}
+                    {%endblock%}    
+	        </div>
+	        <footer>
+            	<p> inprint s.r.l.</p>
+	        </footer>
+	    </div>
+    </body>
+</html>

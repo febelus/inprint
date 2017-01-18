@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+    <form action="login" method="post">
+        <div class="field-box">
+            <label>Nome Utente</label>
+            <input name="User" type="text" value="" placeholder="" class="span6" style="width:240px" type="text">
+        </div>
+        <div class="field-box">
+            <label>Password:</label>
+            <input id="Password" type="text" value="" class="span6" style="width:240px" type="text">
+        </div>			
+            <input type="submit" class="btn-flat primary" > 
+    </form>	
+{% endblock %}

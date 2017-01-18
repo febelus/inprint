@@ -1,0 +1,18 @@
+
+{% extends "::base.html.twig" %}
+
+{% block title %}Riepilogo{% endblock %}
+
+{% block corpo %}
+
+     <section class="t1" >
+	         <table class="table table-hover">
+                     <caption> <h4>Coferma - <span>operazione</span></h4></caption>
+	           {%for item in riepilogo%}
+			<tr><th class="span5">{{item.tipo}}</th><td >{{item.contenuto}}</td></tr>
+		  {%endfor%}
+                </table>
+                <a href={{ path('articolo', {'idproducibile': idproducibile, 'precedente':0})}} id="modal_addclient" class="btn-flat primary" role="button" style="border-radius:2px;">Modifica</a>
+                <a href={{path('nuovoordine',{'idarticolo': idarticolo,})}} id="modal_addclient" class="btn-flat primary" role="button" style="border-radius:2px;">Crea Ordine</a>
+     </section>
+{% endblock %}

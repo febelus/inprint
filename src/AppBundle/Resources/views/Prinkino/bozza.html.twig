@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <!-- stylesheet -->
+    <link href={{ asset('prinkino/bozza/css/literallycanvas.css') }} rel="stylesheet">
+    <link href={{ asset('prinkino/style/lavagna.css') }} rel="stylesheet">
+    <link rel="stylesheet" href={{ asset('prinkino/style/monitor.css') }} media="screen">
+
+    <!-- dependency: React.js -->
+    <script src={{ asset('prinkino/bozza/js/Literally1.js') }}></script>
+    <script src={{ asset('prinkino/bozza/js/Literally2.js') }}></script>
+
+    <!-- Literally Canvas--> 
+    <script src={{ asset('prinkino/bozza/js/literallycanvas.js') }}></script>
+  </head>
+  <body>
+    <!-- where the widget goes. you can do CSS to it. -->
+    <!-- note: as of 0.4.13, you cannot use 'literally' as the class name.
+         sorry about that. -->
+    <div class="my-drawing" ></div>
+
+    <!-- kick it off -->
+    <script>
+      var elemento= document.getElementsByClassName('my-drawing')[0];
+      
+      var  lavagna=LC.init(elemento, {imageURLPrefix: '{{ asset('prinkino/bozza/img')}}' });
+
+      function Pulire(){lavagna.clear();}
+      function Salva(){
+        var immagine=lavagna.getSVGString();
+        //immagine contiene un tag svg in html che contiene l'immagine salvata il controllo si occuperà di memorizzare tale file 
+       var risposta= {bozza: immagine};
+        invia_dati('{{ path('nuovoordine') }}', risposta,'post');
+    }
+    
+        function invia_dati(servURL, params, method) {
+        method = method || "post"; // il metodo POST è usato di default
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", servURL);
+        for(var key in params) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+            form.appendChild(hiddenField);
+        }
+        document.body.appendChild(form);
+        form.submit();
+    }
+    </script>
+    <a class="btn-flat success" onclick="Pulire()" style="border-radius:2px; cursor:pointer;">Pulire lavagna</a>
+    <a class="btn-flat success" onclick="Salva()" style="border-radius:2px; cursor:pointer;">Salva immagine</a>
+  </body>
+</html>

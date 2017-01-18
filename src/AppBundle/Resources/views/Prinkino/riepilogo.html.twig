@@ -1,0 +1,32 @@
+
+{% extends "::base.html.twig" %}
+
+{% block title %}Riepilogo{% endblock %}
+
+{% block corpo %}
+    
+    
+    <section class="t1" >
+	         <table class="table table-hover">
+                     {% if(app.session.get('precedente')=="/visualizza")%}
+                        <caption> <h4>Inserimento - <span>ordine</span></h4></caption>
+                     {%else%}
+                        <caption> <h4>Coferma - <span>operazione</span></h4></caption>
+                     {%endif%}
+	           {%for item in riepilogo%}
+                        {%if not(item.tipo=="bozza")%}
+                            <tr><th class="span5">{{item.tipo}}</th><td >{{item.contenuto}}</td></tr>
+                        {%endif%}
+		  {%endfor%}
+                </table>
+                {% if precedente=="/nuovocliente" %}
+                    <a href={{path('cliente', {'idcliente': codicecliente})}} id="modal_addclient" class="btn-flat primary" role="button" style="border-radius:2px;">Modifica</a>
+                    <a href={{ path('conferma')}} id="modal_addclient" class="btn-flat primary" role="button" style="border-radius:2px;">Conferma</a>
+                {%elseif precedente=="/nuovoordine"%}
+                    <a href={{ path('home')}} id="modal_addclient" class="btn-flat primary" role="button" style="border-radius:2px;">Elimina</a>
+                    <a href={{ path('sospendi')}} id="modal_addclient" class="btn-flat primary" role="button" style="border-radius:2px;">Sospendi</a>
+                    <a href={{ path('conferma')}} id="modal_addclient" class="btn-flat primary" role="button" style="border-radius:2px;">Conferma</a>
+                {%endif%}
+                
+    </section>
+{% endblock %}
